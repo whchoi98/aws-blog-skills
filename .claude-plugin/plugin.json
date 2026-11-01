@@ -5,6 +5,14 @@
   "author": {
     "name": "WooHyung Choi"
   },
+  "license": "MIT",
   "repository": "https://github.com/whchoi98/aws-blog-skills",
-  "keywords": ["aws", "blog", "korean", "tech-writing", "diagram", "aws-korea-tech-blog"]
+  "keywords": [
+    "aws",
+    "blog",
+    "korean",
+    "tech-writing",
+    "diagram",
+    "aws-korea-tech-blog"
+  ]
 }
