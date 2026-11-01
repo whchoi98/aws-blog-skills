@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "aws-blog-skills",
+  "owner": {
+    "name": "WooHyung Choi"
+  },
+  "description": "AWS Korea Tech Blog 원고 작성 플러그인",
+  "plugins": [
+    {
+      "name": "aws-blog-skills",
+      "source": "./",
+      "description": "AWS Korea Tech Blog 한국어 원고 통합 워크플로우(구조 설계, 초안, 사실 검증, 다이어그램, 윤문, 패키징)",
+      "category": "productivity"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# aws-blog-skills
+
+AWS Korea Tech Blog 한국어 원고 통합 스킬. SKILL.md의 워크플로우를 따르고 references/를 단계별로 읽는다.
+
+- references/structure.md   원고 골격, 바이라인, 캡션, 저자 소개
+- references/style.md       금지어, 용어 표기, 권고 표현, 출처 서술
+- references/humanize-checklist.md  AI 티 점검
+- references/verification.md 사실 검증, 카테고리 검증, 문서 상충
+- references/diagrams.md     다이어그램 블로그 프로필
+- references/exemplars.md    모범 글
+- references/collaboration.md 공동 저자 원고
+- scripts/diagram_lib.py     SVG Canvas 라이브러리(기하 assert 포함)
+- scripts/example_diagrams.py 그림 4장 생성 예시(아키텍처, 비교, 손익분기 차트, 막대)
+- scripts/render_diagrams.py Playwright 렌더(폰트·오버플로 게이트)
+- scripts/lint_prose.py      금지어·AI 티 스윕
+- scripts/check_structure.py 구조 검사
+- scripts/package_blog.sh    검사 → zip → outputs 복사
+- assets/templates/blog-template.md 원고 템플릿
+
+의존: aws-diagrams 플러그인(github.com/whchoi98/aws-diagrams. aws-diagram, aws-diagram-design skill과 아이콘, Amazon Ember TTF), Playwright chromium, Noto Sans CJK KR. 선택: kor-writing 플러그인(kor-deslop), humanize-korean 플러그인(metrics_v2.py).
+규칙을 확정하면 references에 "(YYYY-MM-DD 확정)"으로 추가하고 패치 파일을 함께 전달한다.
