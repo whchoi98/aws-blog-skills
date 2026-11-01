@@ -2,18 +2,18 @@
 
 ## 원칙
 
-- 본문에 등장하는 모든 AWS 문서 URL은 `web_fetch`로 열어 200 응답과 원문을 확인한다. 표본이 아니라 전수
-- 만들어 낸 URL, 기억으로 재구성한 카테고리 경로는 금지. `web_fetch`는 이전 `web_search`/`web_fetch` 결과에 나온 URL만 열 수 있으므로, 기억에 있는 문서는 먼저 검색해 결과 링크를 연다
-- bash 컨테이너에는 네트워크가 없을 수 있다(`network_configuration: Enabled: false`). `curl`로 검증하지 않는다
+- 본문에 등장하는 모든 AWS 문서 URL은 `scripts/check_urls.py`로 상태를 확인하고 WebFetch로 원문을 읽는다. 표본이 아니라 전수
+- `check_urls.py`는 200이 아니면 `FAIL`, 최종 URL이 요청 URL과 다르면 `REDIRECT`로 표시하고 종료 코드 1을 돌려준다. docs.aws.amazon.com은 없는 페이지를 가이드 첫 페이지로 리디렉션하면서 200을 주므로 상태 코드만으로는 깨진 링크를 잡지 못한다(2026-11-01 확인). `REDIRECT`는 최종 URL이 맞는 문서인지 확인한 뒤 그 URL로 바꾸고, 아니면 맞는 문서를 다시 찾는다
+- 만들어 낸 URL, 기억으로 재구성한 카테고리 경로는 금지. 기억에 있는 문서는 WebSearch로 찾아 결과에 나온 링크를 쓴다
 - 요금·한도·횟수·발표일은 원문 문장 단위로 대조하고, 원고에서 그 문장의 근거를 물으면 절 이름과 문구를 답할 수 있어야 한다
 
 ## 검증 순서
 
-1. 소재(PDF·발표자료)의 참고 문헌 URL을 모두 fetch
-2. What's New 발표문 검색·fetch: 발표일, 대상 리전·대역폭, 발표 기능명
+1. 소재(PDF·발표자료)의 참고 문헌 URL을 모두 WebFetch로 읽기
+2. What's New 발표문 WebSearch와 WebFetch: 발표일, 대상 리전·대역폭, 발표 기능명
 3. 요금 페이지(공개 단가): 지역별 단가 표는 동적으로 렌더될 수 있어 텍스트에 없을 때가 있다. 예시 단가만 보이면 "예시 단가"로 명시하고 재확인 필요를 캡션에 남긴다
 4. Pricing Guide / User Guide: 동작·제약·FAQ. 같은 주제를 다루는 두 문서가 다르게 말하면 둘 다 기록
-5. 참고 자료 목록은 fetch에 성공한 URL만으로 구성. 문서 제목은 페이지의 실제 제목
+5. 참고 자료 목록은 `check_urls.py`가 `OK`로 판정하고 WebFetch로 원문을 읽은 URL만으로 구성. 문서 제목은 페이지의 실제 제목
 
 ## 용어 3층위 (2026-11-01 추가)
 
@@ -29,7 +29,7 @@
 
 ## 바이라인 카테고리 검증
 
-- tech 블로그 카테고리 페이지(`https://aws.amazon.com/ko/blogs/tech/category/<path>/`)를 fetch해 게시글 바이라인에 실제로 나타난 경로만 사용
+- tech 블로그 카테고리 페이지(`https://aws.amazon.com/ko/blogs/tech/category/<path>/`)를 WebFetch로 열어 게시글 바이라인에 실제로 나타난 경로만 사용
 - `/ko/blogs/korea/`(비기술 블로그)나 영문 블로그 경로를 tech 블로그에 유추 적용하지 않는다
 - 확인 안 된 서비스 하위 카테고리는 빼고 상위 카테고리(Networking & Content Delivery 등)로 대체하고, 사용자에게 게시 시 확인 항목으로 알린다
 - 확인된 경로 목록은 structure.md에 유지하고 새로 확인되면 추가

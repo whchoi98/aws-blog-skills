@@ -65,15 +65,17 @@
 ## 렌더 파이프라인
 
 ```bash
-# 폰트 설치(세션마다). 자산 경로는 aws-diagrams 플러그인 위치에 따라 다르므로 diagram_lib이 찾게 한다
-ASSETS=$(python3 scripts/diagram_lib.py --assets)
-mkdir -p /usr/local/share/fonts/ember
-cp "$ASSETS/fonts/ttf/"*.ttf /usr/local/share/fonts/ember/
-fc-cache -f
+# 폰트 설치(처음 한 번). 자산 경로는 aws-diagrams 플러그인 위치에 따라 다르므로 diagram_lib이 찾게 한다
+ASSETS=$(python3 "${CLAUDE_SKILL_DIR}/scripts/diagram_lib.py" --assets)
+if ! fc-list | grep -qi "Amazon Ember"; then
+  mkdir -p ~/.local/share/fonts/ember            # macOS는 ~/Library/Fonts/
+  cp "$ASSETS/fonts/ttf/"*.ttf ~/.local/share/fonts/ember/
+  fc-cache -f
+fi
 
-# 생성 → 렌더
-python3 diagrams.py          # Canvas.write(html, svg) 호출, check()로 기하 검증
-python3 render_diagrams.py   # Playwright, device_scale_factor=2 → 2560×1440 PNG
+# 생성 → 렌더 (diagram_lib.py와 diagrams.py는 작업 폴더 $W/diagrams/에 복사해 둔 것)
+(cd "$W/diagrams" && BLOG_IMAGES="$W/images" python3 diagrams.py)   # Canvas.write(html, svg), check()로 기하 검증
+uv run --no-project --with playwright python "${CLAUDE_SKILL_DIR}/scripts/render_diagrams.py" "$W/images"   # 2560×1440 PNG
 ```
 
 `render_diagrams.py`는 `document.fonts.ready` 대기 후 Ember/Noto 로드 여부와 `<text>` getBBox 오버플로를 로그로 출력한다. `overflow: []`가 아니면 라벨을 줄이거나 옮긴다. aws-diagrams 플러그인의 `scripts/verify-geometry.py`와 aws-diagram-design skill의 `self_check.py`도 html에 대해 실행해 0 finding을 확인한다.

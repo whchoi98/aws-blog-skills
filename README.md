@@ -33,10 +33,11 @@ skills/aws-blog-skills/
 ├── scripts/
 │   ├── lint_prose.py            # 금지어, AI 티 패턴, 140자 초과 문장 스윕
 │   ├── check_structure.py       # 프론트매터, 바이라인, 캡션, 이미지 경로 검사
+│   ├── check_urls.py            # 원고 URL 전수 확인(HTTP 200, 다른 페이지로 리디렉션 여부)
 │   ├── diagram_lib.py           # SVG Canvas 라이브러리(4px 그리드, 겹침 assert)
 │   ├── example_diagrams.py      # 그림 생성 예시(아키텍처, 구성 비교, 손익분기, 막대)
 │   ├── render_diagrams.py       # Playwright 렌더(폰트, 오버플로 게이트)
-│   └── package_blog.sh          # 검사 후 zip 패키징
+│   └── package_blog.sh          # 번들 조립 → 구조 검사, lint → zip
 └── assets/templates/blog-template.md
 ```
 
@@ -59,14 +60,21 @@ claude plugin install aws-diagrams@aws-diagrams
 
 | 도구 | 쓰는 곳 | 용도 |
 |---|---|---|
-| Python 3 | 모든 스크립트 | lint, 구조 검사, 다이어그램 생성 |
-| Playwright(Chromium) | `render_diagrams.py` | HTML을 2배율 PNG로 렌더 |
+| Python 3 | 모든 스크립트 | lint, 구조 검사, URL 확인, 다이어그램 생성 |
+| Playwright(Chromium) | `render_diagrams.py` | HTML을 2배율 PNG로 렌더. [uv](https://docs.astral.sh/uv/)가 있으면 설치 없이 `uv run --no-project --with playwright`로 실행 |
 | Noto Sans CJK KR | 다이어그램 | 한글 폴백 폰트 |
 | zip | `package_blog.sh` | 원고 번들 |
 
-## 실행 환경에 따른 차이
+## 실행 환경
 
-SKILL.md는 claude.ai 컨테이너를 기준으로 작성되어 `present_files`, `/mnt/user-data/outputs/`, `web_fetch`, `view` 같은 도구 이름과 경로를 사용합니다. Claude Code에서는 각각 작업 폴더의 출력 경로, WebFetch, Read(이미지 보기)로 대응해 실행합니다. `package_blog.sh`는 출력 경로를 `/mnt/user-data/outputs`로 고정하고 있으므로 Claude Code에서는 스크립트의 `OUT` 값을 바꾸거나 같은 단계를 직접 실행합니다.
+SKILL.md는 Claude Code 기준입니다(1.2.0부터).
+
+- skill 스크립트는 `${CLAUDE_SKILL_DIR}`로 부르고, 원고와 그림은 현재 프로젝트 아래 작업 폴더 `<YYYY-MM-DD>-<slug>/`(drafts, diagrams, images, out)에 만듭니다. 설치된 skill 폴더는 플러그인 캐시라서 아무것도 쓰지 않습니다
+- 결과물은 `<작업 폴더>/out/`에 만들어지고, 마지막 응답에 md, PNG, SVG, zip의 절대 경로가 나열됩니다
+- URL 확인은 `check_urls.py`, 원문 읽기는 WebFetch, 그림 확인은 Read 도구를 씁니다
+- Amazon Ember 폰트는 사용자 폰트 폴더(Linux `~/.local/share/fonts/ember/`, macOS `~/Library/Fonts/`)에 설치합니다
+
+claude.ai에서 쓰던 1.1.0 이전 SKILL.md는 `present_files`, `/mnt/user-data/outputs/`, `web_fetch` 기준이었습니다.
 
 ## 갱신
 

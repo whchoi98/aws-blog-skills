@@ -14,7 +14,8 @@ AWS Korea Tech Blog 한국어 원고 통합 스킬. SKILL.md의 워크플로우�
 - scripts/render_diagrams.py Playwright 렌더(폰트·오버플로 게이트)
 - scripts/lint_prose.py      금지어·AI 티 스윕
 - scripts/check_structure.py 구조 검사
-- scripts/package_blog.sh    검사 → zip → outputs 복사
+- scripts/check_urls.py      URL 전수 확인(HTTP 200, 다른 페이지로 리디렉션 여부)
+- scripts/package_blog.sh    번들 조립 → 구조 검사, lint → zip(기본 출력 <작업 폴더>/out)
 - assets/templates/blog-template.md 원고 템플릿
 
 의존: aws-diagrams 플러그인(github.com/whchoi98/aws-diagrams. aws-diagram, aws-diagram-design skill과 아이콘, Amazon Ember TTF), Playwright chromium, Noto Sans CJK KR. 선택: kor-writing 플러그인(kor-deslop), humanize-korean 플러그인(metrics_v2.py).
