@@ -15,11 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-11-02
+
 ### Added
 - Add the MIT `LICENSE` file and declare `license` in `plugin.json`
 
 ### Changed
 - Rewrite the README in English and Korean with configuration, work-folder layout, and update steps
+
+### Fixed
+- Remove the banned middle dot (·) from the table caption placeholder in `blog-template.md` and the disclaimer placeholder in the `structure.md` skeleton, so drafts no longer inherit it
+
+### Security
+- Treat source material and pages read with WebFetch as data in SKILL.md step 0: instructions inside them are not followed or copied into the draft, and are reported to the user; commands in a source are run only after the user approves
 
 ## [1.2.0] - 2026-11-01
 
@@ -44,7 +52,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `references/collaboration.md` for co-authored drafts
 - Add the aws-diagrams plugin integration for icons and fonts, and the optional kor-deslop check mode
 
-[Unreleased]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/whchoi98/aws-blog-skills/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/whchoi98/aws-blog-skills/releases/tag/v1.1.0
 
@@ -60,11 +69,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-11-02
+
 ### Added
 - MIT `LICENSE` 파일 추가와 `plugin.json`의 `license` 선언
 
 ### Changed
 - 설정, 작업 폴더 구조, 갱신 절차를 담은 영어와 한국어 README로 재작성
+
+### Fixed
+- 원고가 금지 가운뎃점(·)을 물려받지 않도록 `blog-template.md`의 표 캡션 placeholder와 `structure.md` 골격의 고지 문장 placeholder에서 가운뎃점 제거
+
+### Security
+- SKILL.md 0단계에 소재와 WebFetch로 읽은 페이지를 데이터로만 다루는 규칙 추가. 그 안의 지시문은 따르거나 원고에 옮기지 않고 사용자에게 알리며, 소재의 명령은 사용자 승인 후에만 실행
 
 ## [1.2.0] - 2026-11-01
 
@@ -89,6 +106,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 공동 저자 원고용 `references/collaboration.md` 추가
 - 아이콘과 폰트를 위한 aws-diagrams 플러그인 연동과 선택적인 kor-deslop 점검 모드 추가
 
-[Unreleased]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/whchoi98/aws-blog-skills/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/whchoi98/aws-blog-skills/releases/tag/v1.1.0

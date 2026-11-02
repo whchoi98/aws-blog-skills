@@ -1,6 +1,6 @@
 {
   "name": "aws-blog-skills",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "AWS Korea Tech Blog 한국어 원고 통합 워크플로우. 소재 인입, 구조 설계, 초안, 공식 문서 사실 검증, SVG/PNG 다이어그램, AI 티 제거 윤문, 공동 저자 협업, Markdown + 이미지 + zip 패키징",
   "author": {
     "name": "WooHyung Choi"

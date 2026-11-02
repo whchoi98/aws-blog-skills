@@ -21,7 +21,7 @@ by WOO HYUNG CHOI on {일} {월}월 {연도} in [Best Practices](https://aws.ama
 |---|---|---|
 | | | |
 
-*표 1. <캡션: 단위·전제>*
+*표 1. <캡션: 단위와 전제>*
 
 ## 2. 기존 구성: <예시 구성>
 

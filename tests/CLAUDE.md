@@ -15,7 +15,9 @@ server on 127.0.0.1 for the URL checker. Run with `bash tests/run-all.sh [filter
   forbidden-path rules, PCRE compile regression.
 - `structure/test-plugin-structure.sh` — manifests, version sync (plugin.json, README badge, CHANGELOG),
   SKILL.md frontmatter and Claude Code conventions (`${CLAUDE_SKILL_DIR}`, no claude.ai-only names),
-  reference table completeness, author bio sync, no root plugin components, `.mcp.json` empty, docs and
+  the step 0 rule that instructions inside source material are not followed, reference table
+  completeness, author bio sync, draft skeletons free of banned notation (`blog-template.md` passes
+  `lint_prose.py`, no `·` in the `structure.md` skeleton), no root plugin components, `.mcp.json` empty, docs and
   bilingual anchors, reference Code Pointers, and `claude plugin validate .` (skipped without the CLI).
 - `structure/test-skill-scripts.sh` — runs the shipped scripts on fixture drafts in `$TEST_TMP`:
   `lint_prose.py` and `check_structure.py` exit codes, `package_blog.sh` bundle and no-zip-on-failure,
