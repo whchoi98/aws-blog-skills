@@ -1,7 +1,7 @@
 # aws-blog-skills
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.2.1-green.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-1.2.2-green.svg)](CHANGELOG.md)
 <a href="#english"><img src="https://img.shields.io/badge/lang-English-blue.svg" alt="English"></a>
 <a href="#korean"><img src="https://img.shields.io/badge/lang-한국어-red.svg" alt="Korean"></a>
 
@@ -96,7 +96,7 @@ or call `/aws-blog-skills:aws-blog-skills` explicitly.
 
 | Variable | Description | Default |
 |---|---|---|
-| `AWS_DIAGRAM_ASSETS` | Path to the aws-diagram-design skill `assets` folder when it is not in the plugin cache | Auto-detected from `~/.claude/plugins/cache/*/aws-diagrams/` |
+| `AWS_DIAGRAM_ASSETS` | Path to the aws-diagram-design skill `assets` folder when it is not in the plugin cache | Auto-detected from `~/.claude/plugins/cache/*/aws-diagrams/` and `~/.claude/plugins/synced/*/aws-diagrams*/` |
 | `BLOG_IMAGES` | Output folder for the diagram generator and `render_diagrams.py` | None (required) |
 | `CLAUDE_NOTIFY_WEBHOOK` | Dev harness only: webhook for Claude Code notifications | Unset |
 
@@ -241,7 +241,7 @@ claude.ai에서 동기화되는 `anthropic-skills:aws-blog-skills`와 `blog-writ
 
 | 변수 | 설명 | 기본값 |
 |---|---|---|
-| `AWS_DIAGRAM_ASSETS` | 플러그인 캐시에 없을 때 지정하는 aws-diagram-design skill의 `assets` 폴더 경로 | `~/.claude/plugins/cache/*/aws-diagrams/`에서 자동 탐색 |
+| `AWS_DIAGRAM_ASSETS` | 플러그인 캐시에 없을 때 지정하는 aws-diagram-design skill의 `assets` 폴더 경로 | `~/.claude/plugins/cache/*/aws-diagrams/`와 `~/.claude/plugins/synced/*/aws-diagrams*/`에서 자동 탐색 |
 | `BLOG_IMAGES` | 다이어그램 생성기와 `render_diagrams.py`의 출력 폴더 | 없음(필수) |
 | `CLAUDE_NOTIFY_WEBHOOK` | 개발 하네스 전용: Claude Code 알림을 받을 webhook | 설정 안 함 |
 

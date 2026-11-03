@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.2] - 2026-11-03
+
+### Fixed
+- Find the aws-diagrams assets in the claude.ai-synced plugin folder under the user's home, including suffixed folder names such as `aws-diagrams~g2`; previously only `/root` was searched, so `diagram_lib.py` failed for non-root users
+
 ## [1.2.1] - 2026-11-02
 
 ### Added
@@ -52,7 +57,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `references/collaboration.md` for co-authored drafts
 - Add the aws-diagrams plugin integration for icons and fonts, and the optional kor-deslop check mode
 
-[Unreleased]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/whchoi98/aws-blog-skills/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/whchoi98/aws-blog-skills/releases/tag/v1.1.0
@@ -68,6 +74,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html)을 따릅니다.
 
 ## [Unreleased]
+
+## [1.2.2] - 2026-11-03
+
+### Fixed
+- claude.ai 동기화 플러그인 폴더를 사용자 홈 아래에서 찾고 `aws-diagrams~g2`처럼 접미사가 붙은 폴더 이름도 찾도록 수정. 이전에는 `/root`만 찾아서 root가 아닌 사용자 환경에서 `diagram_lib.py`가 실패함
 
 ## [1.2.1] - 2026-11-02
 
@@ -106,7 +117,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 공동 저자 원고용 `references/collaboration.md` 추가
 - 아이콘과 폰트를 위한 aws-diagrams 플러그인 연동과 선택적인 kor-deslop 점검 모드 추가
 
-[Unreleased]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/whchoi98/aws-blog-skills/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/whchoi98/aws-blog-skills/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/whchoi98/aws-blog-skills/releases/tag/v1.1.0

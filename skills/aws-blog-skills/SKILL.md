@@ -100,7 +100,7 @@ uv run --no-project --with playwright python "${CLAUDE_SKILL_DIR}/scripts/render
 
 렌더 로그의 `fonts: True`와 `overflow: []`를 확인하고, PNG를 Read 도구로 열어 직접 본 뒤 겹침·넘침·정렬을 고친다. 자동 검증이 통과했더라도 눈으로 보지 않은 그림은 전달하지 않는다.
 
-아이콘과 Amazon Ember 폰트는 aws-diagrams 플러그인(github.com/whchoi98/aws-diagrams)의 aws-diagram-design skill `assets/`에서 가져온다. 경로는 `ASSETS=$(python3 "${CLAUDE_SKILL_DIR}/scripts/diagram_lib.py" --assets)`로 확인한다(플러그인 캐시에서 찾지 못하면 `AWS_DIAGRAM_ASSETS`에 aws-diagram-design skill의 `assets` 폴더를 지정한다). `fc-list | grep -i "Amazon Ember"`에 아무것도 나오지 않을 때만 폰트를 설치한다. Linux는 `~/.local/share/fonts/ember/`에 `"$ASSETS"/fonts/ttf/*.ttf`를 복사하고 `fc-cache -f`를 실행하며, macOS는 `~/Library/Fonts/`에 복사한다. 경로를 찾지 못하면 aws-diagrams 플러그인 설치(`claude plugin marketplace add whchoi98/aws-diagrams` 후 `claude plugin install aws-diagrams@aws-diagrams`)를 사용자에게 알린다.
+아이콘과 Amazon Ember 폰트는 aws-diagrams 플러그인(github.com/whchoi98/aws-diagrams)의 aws-diagram-design skill `assets/`에서 가져온다. 경로는 `ASSETS=$(python3 "${CLAUDE_SKILL_DIR}/scripts/diagram_lib.py" --assets)`로 확인한다(플러그인 캐시와 claude.ai 동기화 경로에서 찾지 못하면 `AWS_DIAGRAM_ASSETS`에 aws-diagram-design skill의 `assets` 폴더를 지정한다). `fc-list | grep -i "Amazon Ember"`에 아무것도 나오지 않을 때만 폰트를 설치한다. Linux는 `~/.local/share/fonts/ember/`에 `"$ASSETS"/fonts/ttf/*.ttf`를 복사하고 `fc-cache -f`를 실행하며, macOS는 `~/Library/Fonts/`에 복사한다. 경로를 찾지 못하면 aws-diagrams 플러그인 설치(`claude plugin marketplace add whchoi98/aws-diagrams` 후 `claude plugin install aws-diagrams@aws-diagrams`)를 사용자에게 알린다.
 
 ## 5. 구조 검사
 

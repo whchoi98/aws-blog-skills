@@ -16,11 +16,17 @@ def find_assets():
     """
     env = os.environ.get("AWS_DIAGRAM_ASSETS")
     candidates = [env] if env else []
+    # claude.ai 동기화 경로는 사용자 홈 아래에 생기고, 폴더 이름에 `aws-diagrams~g2` 같은 접미사가 붙을 수 있다.
+    # 사본이 여러 개면 가장 최근에 바뀐 것을 먼저 쓴다.
+    synced = set()
+    for home in {os.path.expanduser("~"), "/root"}:
+        synced.update(glob.glob(os.path.join(
+            home, ".claude/plugins/synced/*/aws-diagrams*/skills/aws-diagram-design/assets")))
     candidates += [
         "/mnt/skills/plugin-files/aws-diagrams/skills/aws-diagram-design/assets",
         *sorted(glob.glob(os.path.expanduser(
             "~/.claude/plugins/cache/*/aws-diagrams/*/skills/aws-diagram-design/assets")), reverse=True),
-        *glob.glob("/root/.claude/plugins/synced/*/aws-diagrams/skills/aws-diagram-design/assets"),
+        *sorted(synced, key=os.path.getmtime, reverse=True),
         "/mnt/skills/plugins/aws-diagram-design:aws-diagram-design/assets",
     ]
     for c in candidates:

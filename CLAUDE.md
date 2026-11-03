@@ -1,7 +1,7 @@
 # Project Context
 
 ## Overview
-`aws-blog-skills` 1.2.1 is a Claude Code plugin for writing Korean drafts for the AWS Korea Tech Blog
+`aws-blog-skills` 1.2.2 is a Claude Code plugin for writing Korean drafts for the AWS Korea Tech Blog
 (aws.amazon.com/ko/blogs/tech). Its only skill, `aws-blog-skills`, runs the whole workflow: source intake,
 structure, Korean draft, official-doc fact check, blog-profile diagrams (SVG/PNG, 1280x720), AI-tell removal,
 rule registration, and Markdown + images + zip packaging. It ships Python and Bash scripts that Claude runs
